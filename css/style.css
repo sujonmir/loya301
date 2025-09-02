@@ -1,0 +1,426 @@
+/* CSS RESET & FONT IMPORT */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+:root {
+  --dark-blue: #0a192f;
+  --light-gray: #f8f9fa;
+  --medium-gray: #e9ecef;
+  --text-dark: #343a40;
+  --text-light: #f8f9fa;
+  --accent-orange: #fd7e14;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  background-color: var(--light-gray);
+  color: var(--text-dark);
+}
+
+/* UTILITY CLASSES */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+section {
+  padding: 4rem 0;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.8rem;
+}
+h2 {
+  font-size: 2.2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* HEADER & NAVIGATION */
+.header {
+  background-color: #fff;
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--dark-blue);
+  text-decoration: none;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px; /* Adjust based on header height */
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 1rem 0;
+  transform: translateY(-150%);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-menu.active {
+  transform: translateY(0);
+}
+
+.nav-item {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--accent-orange);
+}
+
+.hamburger {
+  display: block;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: var(--dark-blue);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hamburger animation */
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* HERO SECTION */
+.hero {
+  height: 80vh;
+  min-height: 400px;
+  background: linear-gradient(rgba(10, 25, 47, 0.6), rgba(10, 25, 47, 0.6)),
+    url(../img/hero.webp) no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--text-light);
+  margin-top: 60px; /* Space for fixed header */
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+/* ABOUT SECTION */
+#about .about-content {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding-bottom: 50px;
+}
+
+.about-text .icon {
+  color: var(--accent-orange);
+  margin-bottom: 1rem;
+  margin-top: -20px;
+  width: 90px;
+}
+
+.about-text p {
+  max-width: 500px;
+}
+
+/* WORK PHILOSOPHY SECTION */
+.work-philosophy {
+  background-color: var(--dark-blue);
+  color: var(--text-light);
+}
+
+.work-philosophy-content {
+  display: grid;
+  gap: 2rem;
+}
+
+.work-philosophy-text h2 {
+  border-left: 4px solid var(--accent-orange);
+  padding-left: 1rem;
+}
+.work-philosophy-text p {
+  padding-bottom: 1rem;
+}
+
+.services-list {
+  list-style: none;
+  padding-left: 3rem;
+}
+
+.services-list li {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.services-list li::before {
+  content: "✓";
+  position: absolute;
+  left: -1.4rem;
+  color: var(--accent-orange);
+  font-weight: bold;
+}
+
+.work-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 1rem;
+  /* This is key: it tells the grid to backfill empty cells */
+  grid-auto-flow: dense;
+}
+
+/* Target only the first image inside the container */
+.work-images img:first-child {
+  grid-row: span 2; /* Make it span 2 rows */
+}
+
+/* Ensure all images fill their grid area nicely */
+.work-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* GALLERY SECTION */
+.gallery-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.image-collage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, 180px);
+  gap: 1rem;
+}
+
+.collage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collage-img-1 {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+}
+.collage-img-2 {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+.collage-img-3 {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.gallery-text {
+  background-color: var(--medium-gray);
+  padding: 2rem;
+  text-align: center;
+}
+.gallery-text img {
+  margin-bottom: 20px;
+}
+
+/* CONTACT SECTION */
+.contact-content {
+  display: grid;
+  gap: 2rem;
+}
+
+.contact-info {
+  line-height: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contact-info p {
+  padding-bottom: 1rem;
+}
+
+.contact-info strong {
+  display: inline-block;
+  width: 70px;
+}
+.social-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+.social-wrapper a {
+  margin-right: 1rem;
+  text-decoration: none;
+}
+
+.social-wrapper a img {
+  width: 30px;
+  height: 30px;
+  transition: all linear 0.3s;
+}
+.social-wrapper a img:hover {
+  transform: scale(1.2);
+}
+
+/* FOOTER */
+.footer {
+  background-color: var(--dark-blue);
+  color: var(--text-light);
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+#contactUsBtn {
+  padding: 10px 30px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  text-transform: capitalize;
+  text-align: center;
+  position: relative;
+  background-color: #0a192f;
+  color: #fff;
+}
+#contactUsBtn:hover::after {
+  content: "Click";
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #000;
+  padding: 5px 15px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+#contactUsBtn:hover::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 40px solid #fff;
+}
+/* MEDIA QUERIES FOR RESPONSIVENESS */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+  h2 {
+    font-size: 2.8rem;
+  }
+  section {
+    padding: 6rem 0;
+  }
+
+  /* Desktop Navigation */
+  .hamburger {
+    display: none;
+  }
+  .nav-menu {
+    position: static;
+    flex-direction: row;
+    background-color: transparent;
+    transform: translateY(0);
+    width: auto;
+    padding: 0;
+    box-shadow: none;
+  }
+  .nav-item {
+    margin: 0 1rem;
+  }
+
+  /* Sections Layout */
+  #about .about-content,
+  .work-philosophy-content,
+  .gallery-container,
+  .contact-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery-container {
+    direction: rtl; /* Reverses order to match image */
+  }
+  .gallery-container > * {
+    direction: ltr;
+  }
+
+  .contact-info {
+    padding-left: 2rem;
+  }
+}
