@@ -40,8 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const phone = document.getElementById("phone")?.value || "N/A";
       const message = document.getElementById("message")?.value || "N/A";
 
-      // const recipientEmail = "ventasmx@demakhan.com";
-      const recipientEmail = "sujonmhk786@gmail.com";
+      const recipientEmail = "ventasmx@demakhan.com";
       const subject = encodeURIComponent(
         `New Contact Form Submission from ${name}`
       );
