@@ -351,7 +351,7 @@ img {
   color: #fff;
 }
 #contactUsBtn:hover::after {
-  content: "Click";
+  content: "Hacer clic";
   position: absolute;
   top: -50%;
   left: 50%;
