@@ -1,0 +1,186 @@
+.gallery-collage-2 {
+  display: grid;
+  /* This creates a flexible grid. The 'minmax' prevents columns from getting too small,
+       and 'auto-fit' will create as many columns as can fit.
+       Adjust the 120px to make items smaller or larger as a base unit. */
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-auto-rows: 160px; /* Base height for rows */
+  gap: 1rem; /* Slightly larger gap between images for better separation */
+  width: 100%;
+  margin: 20px auto;
+  overflow: hidden; /* Prevent content from spilling outside */
+  grid-auto-flow: dense;
+}
+
+.gallery-collage-2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures portrait images fill their space, cropping if necessary */
+  display: block;
+  cursor: pointer;
+  border-radius: 8px; /* Subtle rounded corners for a softer look */
+  /* Remove the hover effect */
+  transition: none; /* Or set to 'all 0.2s ease-in-out' if other transitions are added later */
+}
+
+/* Let's try to arrange them to mimic a dense, staggered layout.
+   These are examples; you might need to fine-tune based on your specific image count and desired look.
+   We'll target images by their order to give them different sizes. */
+
+/* Image 1: Main larger element */
+.gallery-collage-2 img:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 3;
+}
+
+/* Image 2: Regular size */
+.gallery-collage-2 img:nth-child(2) {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+/* Image 3: Wider element */
+.gallery-collage-2 img:nth-child(3) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Image 4: Tall element */
+.gallery-collage-2 img:nth-child(4) {
+  grid-column: span 1;
+  grid-row: span 3;
+}
+
+/* Image 5: Regular size */
+.gallery-collage-2 img:nth-child(5) {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+/* Image 6: Wider and taller */
+.gallery-collage-2 img:nth-child(6) {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+/* Image 7: Another tall one */
+.gallery-collage-2 img:nth-child(7) {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+/* Image 8: Regular size */
+.gallery-collage-2 img:nth-child(8) {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* Image 9: Wider */
+.gallery-collage-2 img:nth-child(9) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Image 10: Regular portrait */
+.gallery-collage-2 img:nth-child(10) {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+/* Image 11: Another wider item */
+.gallery-collage-2 img:nth-child(11) {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* Image 12: Tall element for the end */
+.gallery-collage-2 img:nth-child(12) {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* Fullscreen Overlay Styles */
+#fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+}
+
+#fullscreen-overlay.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+#fullscreen-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain; /* Ensure the full image is visible, not cropped */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+#close-button {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 50px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Basic responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .gallery-collage-2 {
+    /* Use a single column for a more readable stack on very small screens,
+       or a flexible two-column layout for slightly larger small screens. */
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-auto-rows: 120px; /* Slightly larger base row height for better visibility */
+    padding: 0 20px;
+  }
+
+  /* Reset all image spans to default 1x1 to start clean */
+  .gallery-collage-2 img {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+    border-radius: 8px; /* Maintain a subtle border-radius */
+    object-fit: cover; /* Ensure images fill their grid area without distortion */
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Introduce some subtle variations for visual interest.
+     Let's make some images span 2 rows, but less frequently than before. */
+  .gallery-collage-2 img:nth-child(3n + 1) {
+    /* Every 3rd image (starting from the 1st) spans 2 rows */
+    grid-row: span 2 !important;
+  }
+
+  /* Optional: Make every 5th image span 2 columns if the layout allows,
+     creating a wider element without breaking the flow too much. */
+  .gallery-collage-2 img:nth-child(5n) {
+    grid-column: span 2 !important;
+    grid-row: span 1 !important; /* Ensure it doesn't also span 2 rows from the previous rule */
+  }
+
+  /* For devices narrower than 480px, a single column stack is often best */
+  @media (max-width: 480px) {
+    .gallery-collage-2 {
+      grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
+      grid-auto-rows: 200px; /* Taller rows for better single-image display */
+    }
+    .gallery-collage-2 img {
+      grid-column: span 1 !important;
+      grid-row: span 1 !important;
+    }
+  }
+}
